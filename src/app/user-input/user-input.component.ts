@@ -19,7 +19,7 @@ export class UserInputComponent implements OnInit {
     return this.inputText ? this.inputText.length > 0 : false;
   }
 
-  validate(): boolean {
+  validateInput(): boolean {
     let valid = true
       && this.validator.hasText(this.inputText)
       && this.validator.isALetter(this.inputText);
@@ -28,7 +28,7 @@ export class UserInputComponent implements OnInit {
   }
 
   submit() {
-    let isInputValid = this.validate();
+    let isInputValid = this.validateInput();
     if (isInputValid) {
       this.userInputService.submitLetter(this.inputText);
     }
