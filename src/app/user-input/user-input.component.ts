@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserInputValidatorService } from './user-input.validator.service';
 import { UserInputService } from './user-input.service';
+import { GameService } from '../services/game.service';
 
 @Component({
   selector: 'user-input',
@@ -12,11 +13,16 @@ export class UserInputComponent implements OnInit {
 
   constructor(
     private validator: UserInputValidatorService,
-    private userInputService: UserInputService
+    private userInputService: UserInputService,
+    private gameService: GameService
   ) { }
 
   get hasText() {
     return this.inputText ? this.inputText.length > 0 : false;
+  }
+
+  get isMyTurn() {
+    return this.gameService.myTurn;
   }
 
   ngOnInit() {
