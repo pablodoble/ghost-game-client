@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { AppComponent } from './app.component';
 import { BoardComponent } from './board/board.component';
@@ -10,6 +11,8 @@ import { HeaderComponent } from './header/header.component';
 import { UserInputComponent } from './user-input/user-input.component';
 
 import { SpinnerService } from './spinner/spinner.service';
+import { UserInputValidatorService } from './user-input/user-input.validator.service';
+import { UserInputService } from './user-input/user-input.service';
 
 @NgModule({
   declarations: [
@@ -22,10 +25,13 @@ import { SpinnerService } from './spinner/spinner.service';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    SimpleNotificationsModule.forRoot()
   ],
   providers: [
-    SpinnerService
+    SpinnerService,
+    UserInputValidatorService,
+    UserInputService
   ],
   bootstrap: [AppComponent]
 })

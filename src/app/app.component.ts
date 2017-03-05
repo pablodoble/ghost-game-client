@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app works!';
+  notificationsOptions: any = {
+    position: "top",
+    timeOut: 2000,
+    preventDuplicates: true
+  };
 }
