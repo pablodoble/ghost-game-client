@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 
 @Injectable()
 export class GameService {
@@ -11,14 +11,20 @@ export class GameService {
     this.onLetterAdded = new ReplaySubject<string>();
   }
 
-  addLetter(letter: string): string {
-    this.currentWord = this.currentWord + letter;
-    this.onLetterAdded.next(this.currentWord);
-    return this.currentWord;
+  addLetter(letter: string): Observable<string> {
+    let observable = new Observable<string>(observer => {
+      this.currentWord = this.currentWord + letter;
+      this.onLetterAdded.next(this.currentWord);
+      observer.next(this.currentWord);
+    })
+    return observable;
   }
 
-  getCurrentWord(): string {
-    return this.currentWord;
+  getCurrentWord(): Observable<string> {
+    let observable = new Observable<string>(observer => {
+        observer.next(this.currentWord);
+    });
+    return observable;
   }
 
 }

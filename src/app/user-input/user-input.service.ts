@@ -9,7 +9,7 @@ export class UserInputService {
   ) {}
 
   submitLetter(letter: string) {
-    this.gameService.addLetter(letter);
+    this.gameService.addLetter(letter).subscribe();
     console.log("submitted!");
   }
 
