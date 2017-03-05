@@ -1,7 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core'
 import { FormsModule } from '@angular/forms';
+import { NotificationsService } from 'angular2-notifications';
 
 import { UserInputComponent } from './user-input.component';
+import { UserInputValidatorService } from './user-input.validator.service';
+import { UserInputService } from './user-input.service';
 
 describe('UserInputComponent', () => {
   let component: UserInputComponent;
@@ -10,7 +14,13 @@ describe('UserInputComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule],
-      declarations: [UserInputComponent]
+      declarations: [UserInputComponent],
+      providers: [
+        UserInputValidatorService,
+        UserInputService,
+        NotificationsService
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
   }));
