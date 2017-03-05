@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
+import { NotificationsService } from 'angular2-notifications';
 
 @Injectable()
 export class GameService {
@@ -8,7 +9,9 @@ export class GameService {
   currentWord: string = "";
   myTurn: boolean = true;
 
-  constructor() {
+  constructor(
+    private notificationsService: NotificationsService
+  ) {
     this.onLetterAdded = new ReplaySubject<string>();
   }
 
@@ -20,6 +23,7 @@ export class GameService {
       // here we should do an http request to the server
       setTimeout(() => {
         this.myTurn = true;
+        this.notificationsService.info("Game info", "It's your tourn!");
         observer.next(this.currentWord);
       }, 1000);
     })
