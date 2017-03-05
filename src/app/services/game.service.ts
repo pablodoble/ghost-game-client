@@ -23,7 +23,7 @@ export class GameService {
       // here we should do an http request to the server
       setTimeout(() => {
         this.myTurn = true;
-        this.notificationsService.info("Game info", "It's your tourn!");
+        this.notificationsService.info("Game info", "It's your turn!");
         observer.next(this.currentWord);
       }, 1000);
     })
