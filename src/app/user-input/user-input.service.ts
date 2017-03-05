@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
+import { GameService } from '../services/game.service';
 
 @Injectable()
 export class UserInputService {
 
-  constructor() {}
+  constructor(
+    private gameService: GameService
+  ) {}
 
   submitLetter(letter: string) {
-    // Do submit
+    this.gameService.addLetter(letter).subscribe();
     console.log("submitted!");
   }
 
