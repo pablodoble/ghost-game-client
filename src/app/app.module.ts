@@ -9,6 +9,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { HeaderComponent } from './header/header.component';
 import { UserInputComponent } from './user-input/user-input.component';
 
+import { SpinnerService } from './spinner/spinner.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,9 @@ import { UserInputComponent } from './user-input/user-input.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [
+    SpinnerService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
