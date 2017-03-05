@@ -13,6 +13,7 @@ import { UserInputComponent } from './user-input/user-input.component';
 import { SpinnerService } from './spinner/spinner.service';
 import { UserInputValidatorService } from './user-input/user-input.validator.service';
 import { UserInputService } from './user-input/user-input.service';
+import { GameService } from './services/game.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { UserInputService } from './user-input/user-input.service';
   providers: [
     SpinnerService,
     UserInputValidatorService,
-    UserInputService
+    UserInputService,
+    GameService
   ],
   bootstrap: [AppComponent]
 })

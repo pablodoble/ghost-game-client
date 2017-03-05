@@ -19,6 +19,9 @@ export class UserInputComponent implements OnInit {
     return this.inputText ? this.inputText.length > 0 : false;
   }
 
+  ngOnInit() {
+  }
+
   validateInput(): boolean {
     let valid = true
       && this.validator.hasText(this.inputText)
@@ -31,10 +34,12 @@ export class UserInputComponent implements OnInit {
     let isInputValid = this.validateInput();
     if (isInputValid) {
       this.userInputService.submitLetter(this.inputText);
+      this.clearInput();
     }
   }
 
-  ngOnInit() {
+  clearInput() {
+    this.inputText = "";
   }
 
 }
