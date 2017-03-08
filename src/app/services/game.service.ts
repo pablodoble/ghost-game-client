@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { NotificationsService } from 'angular2-notifications';
 
+import { HttpService } from './http.service';
+
 @Injectable()
 export class GameService {
   onLetterAdded: ReplaySubject<string>;
@@ -10,7 +12,8 @@ export class GameService {
   myTurn: boolean = true;
 
   constructor(
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private httpService: HttpService
   ) {
     this.onLetterAdded = new ReplaySubject<string>();
   }
