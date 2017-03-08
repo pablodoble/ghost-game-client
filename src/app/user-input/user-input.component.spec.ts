@@ -6,6 +6,7 @@ import { NotificationsService } from 'angular2-notifications';
 import { UserInputComponent } from './user-input.component';
 import { UserInputValidatorService } from './user-input.validator.service';
 import { UserInputService } from './user-input.service';
+import { GameService } from '../services/game.service';
 
 describe('UserInputComponent', () => {
   let component: UserInputComponent;
@@ -18,7 +19,8 @@ describe('UserInputComponent', () => {
       providers: [
         UserInputValidatorService,
         UserInputService,
-        NotificationsService
+        NotificationsService,
+        GameService
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })

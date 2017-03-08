@@ -14,6 +14,8 @@ import { SpinnerService } from './spinner/spinner.service';
 import { UserInputValidatorService } from './user-input/user-input.validator.service';
 import { UserInputService } from './user-input/user-input.service';
 import { GameService } from './services/game.service';
+import { ConfigurationService } from './services/configuration.service';
+import { HttpService } from './services/http.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { GameService } from './services/game.service';
     SpinnerService,
     UserInputValidatorService,
     UserInputService,
-    GameService
+    GameService,
+    HttpService
   ],
   bootstrap: [AppComponent]
 })
