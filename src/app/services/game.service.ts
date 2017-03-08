@@ -18,19 +18,22 @@ export class GameService {
     this.onLetterAdded = new ReplaySubject<string>();
   }
 
+  initGame(): Observable<any> {
+    return this.httpService.get('/game/init');
+  }
+
   addLetter(letter: string): Observable<string> {
     this.myTurn = false;
     this.currentWord = this.currentWord + letter;
     this.onLetterAdded.next(this.currentWord);
-    let observable = new Observable<string>(observer => {
-      // here we should do an http request to the server
-      setTimeout(() => {
+    return this.httpService.post('/game/letter/new', { letter })
+      .map(body => {
+        this.currentWord = body.currentWord;
+        this.onLetterAdded.next(this.currentWord);
         this.myTurn = true;
         this.notificationsService.info("Game info", "It's your turn!");
-        observer.next(this.currentWord);
-      }, 1000);
-    })
-    return observable;
+        return this.currentWord;
+      });
   }
 
   getCurrentWord(): Observable<string> {

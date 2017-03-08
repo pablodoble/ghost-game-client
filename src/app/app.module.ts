@@ -36,7 +36,8 @@ import { HttpService } from './services/http.service';
     UserInputValidatorService,
     UserInputService,
     GameService,
-    HttpService
+    HttpService,
+    ConfigurationService
   ],
   bootstrap: [AppComponent]
 })

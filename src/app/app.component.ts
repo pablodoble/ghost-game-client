@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigurationService } from './services/configuration.service';
+import { GameService } from './services/game.service';
 
 @Component({
   selector: 'app-root',
@@ -15,10 +16,18 @@ export class AppComponent implements OnInit {
   };
 
   constructor(
-    private configurationService: ConfigurationService
-  ) {}
+    private configurationService: ConfigurationService,
+    private gameService: GameService
+  ) { }
 
   ngOnInit() {
-    this.configurationService.loadConfiguration().subscribe();
+    this.configurationService
+      .loadConfiguration()
+      .flatMap(() => {
+        return this.gameService.initGame();
+      })
+      .subscribe(() => {
+        console.log("Game init!");
+      });
   }
 }

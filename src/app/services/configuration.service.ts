@@ -23,7 +23,6 @@ export class ConfigurationService {
       .get('assets/config.json')
       .map(response => {
         let configJson = response.json();
-        console.log(configJson);
         Object.assign(this.configuration, configJson);
       });
   }

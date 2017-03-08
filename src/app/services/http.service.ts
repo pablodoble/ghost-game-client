@@ -17,4 +17,10 @@ export class HttpService {
       .map(response => response.json());
   }
 
+  post(url: string, body: any): Observable<any> {
+    return this.http
+      .post(this.configurationService.configuration.SERVER_URL + url, body)
+      .map(response => response.json());
+  }
+
 }
