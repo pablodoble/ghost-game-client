@@ -1,0 +1,15 @@
+<div *ngIf="show" class="winner-background">
+  <div class="winner-container" [ngClass]="{winner: winner, loser: !winner}">
+    <div class="row col-xs-12 title">
+      {{ winnerResult }}
+    </div>
+    <div class="row col-xs-12 subtitle">
+      {{ winnerReason }}
+    </div>
+    <div class="row">
+      <div (click)="startAgain()" class="col-xs-offset-4 col-xs-4 btn btn-success">
+        Start Again
+      </div>
+    </div>
+  </div>
+</div>

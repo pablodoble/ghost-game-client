@@ -14,6 +14,9 @@ import { SpinnerService } from './spinner/spinner.service';
 import { UserInputValidatorService } from './user-input/user-input.validator.service';
 import { UserInputService } from './user-input/user-input.service';
 import { GameService } from './services/game.service';
+import { ConfigurationService } from './services/configuration.service';
+import { HttpService } from './services/http.service';
+import { WinnerComponent } from './winner/winner.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,8 @@ import { GameService } from './services/game.service';
     BoardComponent,
     SpinnerComponent,
     HeaderComponent,
-    UserInputComponent
+    UserInputComponent,
+    WinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,9 @@ import { GameService } from './services/game.service';
     SpinnerService,
     UserInputValidatorService,
     UserInputService,
-    GameService
+    GameService,
+    HttpService,
+    ConfigurationService
   ],
   bootstrap: [AppComponent]
 })
