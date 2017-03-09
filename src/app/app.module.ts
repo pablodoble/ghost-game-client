@@ -16,6 +16,7 @@ import { UserInputService } from './user-input/user-input.service';
 import { GameService } from './services/game.service';
 import { ConfigurationService } from './services/configuration.service';
 import { HttpService } from './services/http.service';
+import { WinnerComponent } from './winner/winner.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HttpService } from './services/http.service';
     BoardComponent,
     SpinnerComponent,
     HeaderComponent,
-    UserInputComponent
+    UserInputComponent,
+    WinnerComponent
   ],
   imports: [
     BrowserModule,

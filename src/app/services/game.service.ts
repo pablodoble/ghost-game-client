@@ -7,6 +7,7 @@ import { HttpService } from './http.service';
 @Injectable()
 export class GameService {
   onLetterAdded: ReplaySubject<string>;
+  onWinner: ReplaySubject<boolean>;
   //provisional property until backend is working
   currentWord: string = "";
   myTurn: boolean = true;
@@ -16,9 +17,13 @@ export class GameService {
     private httpService: HttpService
   ) {
     this.onLetterAdded = new ReplaySubject<string>();
+    this.onWinner = new ReplaySubject<boolean>();
   }
 
   initGame(): Observable<any> {
+    this.myTurn = true;
+    this.currentWord = "";
+    this.onLetterAdded.next(this.currentWord);
     return this.httpService.get('/game/init');
   }
 
@@ -30,8 +35,13 @@ export class GameService {
       .map(body => {
         this.currentWord = body.currentWord;
         this.onLetterAdded.next(this.currentWord);
-        this.myTurn = true;
-        this.notificationsService.info("Game info", "It's your turn!");
+        console.log("body", body);
+        if (body.winner !== null) {
+          this.onWinner.next(body.winner);
+        } else {
+          this.myTurn = true;
+          this.notificationsService.info("Game info", "It's your turn!");
+        }
         return this.currentWord;
       });
   }
@@ -41,6 +51,22 @@ export class GameService {
       observer.next(this.currentWord);
     });
     return observable;
+  }
+
+  getWinnerReason(winner): Observable<string> {
+    return this.httpService.post('/game/word/info', {word: this.currentWord})
+      .map(wordInfo => {
+        let loserSubject = winner ? "The machine" : "You";
+        let result = "";
+        
+        if(wordInfo.isOnDictionary) {
+            result = "typed a valid word";
+        } else {
+            result = "typed a word that couldn't produce another one"
+        }
+
+        return `${loserSubject} ${result}`;
+      });
   }
 
 }
