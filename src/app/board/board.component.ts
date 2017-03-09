@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GameService } from '../services/game.service';
 
 @Component({
   selector: 'board',
@@ -6,10 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./board.component.less']
 })
 export class BoardComponent implements OnInit {
+  content: string = "";
 
-  constructor() { }
+  constructor(
+    private gameService: GameService
+  ) { }
 
   ngOnInit() {
+    this.subscribeToOnLetterAddedEvent();
+  }
+
+  private subscribeToOnLetterAddedEvent() {
+    this.gameService.onLetterAdded.subscribe(currentWord => {
+      this.content = currentWord;
+    });
   }
 
 }

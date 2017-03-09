@@ -1,8 +1,8 @@
 <div class="user-input-container row">
   <div class="user-input col-xs-offset-5 col-xs-2">
-    <input [(ngModel)]="inputText" type="text" maxlength="1">
+    <input [(ngModel)]="inputText" [disabled]="!isMyTurn" type="text" maxlength="1">
   </div>
-  <div *ngIf="hasText" class="submit-button btn btn-success col-xs-offset-5 col-xs-2">
+  <div *ngIf="hasText" (click)="submit()" class="submit-button btn btn-success col-xs-offset-5 col-xs-2">
       Submit
   </div>
 </div>
