@@ -8,7 +8,6 @@ import { HttpService } from './http.service';
 export class GameService {
   onLetterAdded: ReplaySubject<string>;
   onWinner: ReplaySubject<boolean>;
-  //provisional property until backend is working
   currentWord: string = "";
   myTurn: boolean = true;
 
